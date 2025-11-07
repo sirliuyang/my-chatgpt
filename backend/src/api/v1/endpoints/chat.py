@@ -1,8 +1,6 @@
 # @Home    : www.pi-apple.com
 # @Author  : Leon
 # @Email   : 88978827@qq.com
-# Streaming chat endpoint
-
 from fastapi import APIRouter, Depends, HTTPException, status, Header
 from fastapi.responses import StreamingResponse
 from sqlalchemy.ext.asyncio import AsyncSession

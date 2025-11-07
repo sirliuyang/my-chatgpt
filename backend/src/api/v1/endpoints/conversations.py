@@ -1,7 +1,6 @@
 # @Home    : www.pi-apple.com
 # @Author  : Leon
 # @Email   : 88978827@qq.com
-# Conversation management endpoints
 from fastapi import APIRouter, Depends, HTTPException, status
 from sqlalchemy.ext.asyncio import AsyncSession
 from src.db.session import get_db
