@@ -1,29 +1,32 @@
 # @Home    : www.pi-apple.com
 # @Author  : Leon
 # @Email   : 88978827@qq.com
-from fastapi import APIRouter, Depends, HTTPException
-from sqlalchemy.orm import Session
-from typing import List
+# Conversation management endpoints
+from fastapi import APIRouter, Depends, HTTPException, status
+from sqlalchemy.ext.asyncio import AsyncSession
 from src.db.session import get_db
-from src.schemas.conversation import ConversationCreate, ConversationOut
-from src.crud import crud_conversation
+from src.schemas.conversation import ConversationCreate, ConversationResponse
+from src.schemas.message import MessageResponse
+from src.crud.crud_conversation import get_conversations, get_conversation, create_conversation
+from src.crud.crud_message import get_messages_by_conversation
+from typing import List
 
 router = APIRouter()
 
+@router.get("/conversations", response_model=List[ConversationResponse])
+async def list_conversations(db: AsyncSession = Depends(get_db)):
+    """List all conversations."""
+    return await get_conversations(db)
 
-@router.post("/conversations", response_model=ConversationOut)
-def create_conversation(conversation: ConversationCreate, db: Session = Depends(get_db)):
-    return crud_conversation.create(db, obj_in=conversation)
+@router.get("/conversations/{id}", response_model=List[MessageResponse])
+async def fetch_conversation(id: int, db: AsyncSession = Depends(get_db)):
+    """Fetch message history for a conversation."""
+    conversation = await get_conversation(db, id)
+    if not conversation:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Conversation not found")
+    return await get_messages_by_conversation(db, id)
 
-
-@router.get("/conversations", response_model=List[ConversationOut])
-def list_conversations(skip: int = 0, limit: int = 100, db: Session = Depends(get_db)):
-    return crud_conversation.get_multi(db, skip=skip, limit=limit)
-
-
-@router.get("/conversations/{id}", response_model=ConversationOut)
-def get_conversation(id: int, db: Session = Depends(get_db)):
-    conv = crud_conversation.get(db, id=id)
-    if not conv:
-        raise HTTPException(status_code=404, detail="Conversation not found")
-    return conv
+@router.post("/conversations", response_model=ConversationResponse, status_code=status.HTTP_201_CREATED)
+async def create_new_conversation(conversation: ConversationCreate, db: AsyncSession = Depends(get_db)):
+    """Create a new conversation."""
+    return await create_conversation(db, conversation)
