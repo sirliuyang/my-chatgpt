@@ -10,9 +10,9 @@ from functools import lru_cache
 class Settings(BaseSettings):
     # AI Provider settings
     AI_PROVIDER: str = os.getenv("AI_PROVIDER", "deepseek")  # Options: "deepseek", "openai"
-    OPENAI_API_KEY: str = os.getenv("OPENAI_API_KEY", "your-default-api-key-here")
-    OPENAI_BASE_URL: str = os.getenv("OPENAI_BASE_URL", "https://api.deepseek.com/v1")
-    DATA_FILE: str = "data.json"  # JSON file for persistence
+    OPENAI_API_KEY: str = os.getenv("OPENAI_API_KEY")
+    OPENAI_BASE_URL: str = os.getenv("OPENAI_BASE_URL")
+    DATABASE_URL: str = os.getenv("DATABASE_URL")
 
     class Config:
         env_file = ".env"

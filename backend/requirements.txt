@@ -3,6 +3,7 @@ asyncpg==0.30.0
 fastapi==0.121.0
 httpx==0.28.1
 logfire==4.14.2
+openai==2.7.1
 pydantic==2.12.4
 pydantic-ai==1.12.0
 python-dotenv==1.2.1
