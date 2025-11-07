@@ -5,7 +5,13 @@ from pydantic import BaseModel
 from datetime import datetime
 
 
-class MessageResponse(BaseModel):
+class MessageCreate(BaseModel):
+    conversation_id: int
+    role: str
+    content: str
+
+
+class MessageOut(BaseModel):
     id: int
     conversation_id: int
     role: str

@@ -7,7 +7,7 @@ from src.main import app
 client = TestClient(app)
 
 
-def test_chat_endpoint():
-    response = client.post("/api/v1/chat", json={"history": [], "message": "Hello"})
+def test_chat_stream():
+    response = client.post("/api/v1/chat", json={"messages": [{"role": "user", "content": "Hello"}]})
     assert response.status_code == 200
-    # Further tests for streaming, but basic
+    assert response.headers["content-type"] == "text/event-stream; charset=utf-8"

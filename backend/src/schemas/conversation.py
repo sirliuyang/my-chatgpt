@@ -3,13 +3,14 @@
 # @Email   : 88978827@qq.com
 from pydantic import BaseModel
 from datetime import datetime
+from typing import List
 
 
 class ConversationCreate(BaseModel):
-    pass  # Empty for now; can add fields if needed
+    pass
 
 
-class ConversationResponse(BaseModel):
+class ConversationOut(BaseModel):
     id: int
     created_at: datetime
 
