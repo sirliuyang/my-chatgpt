@@ -1,13 +1,13 @@
-import type {Metadata} from "next";
-import {Inter} from "next/font/google";
-import "./globals.css";
+// @Home    : www.pi-apple.com
+// @Author  : Leon
+// @Email   : newyoung9@gmail.com
+import type {Metadata} from 'next';
+import './globals.css';
 import React from "react";
 
-const inter = Inter({subsets: ["latin"]});
-
 export const metadata: Metadata = {
-    title: "Gen AI Chat",
-    description: "A ChatGPT-like frontend",
+    title: 'Leon ChatGPT',
+    description: 'A ChatGPT-like interface built with Next.js 16 and React 19',
 };
 
 export default function RootLayout({
@@ -16,10 +16,8 @@ export default function RootLayout({
     children: React.ReactNode;
 }>) {
     return (
-        <html lang="en">
-        <body className={`${inter.className} bg-gray-100 dark:bg-gray-900`}>
-        {children}
-        </body>
+        <html lang="en" suppressHydrationWarning>
+        <body className="antialiased">{children}</body>
         </html>
     );
 }
