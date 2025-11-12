@@ -1,21 +1,29 @@
 # @Home    : www.pi-apple.com
 # @Author  : Leon
-# @Email   : 88978827@qq.com
-from typing import AsyncGenerator
-from sqlalchemy.ext.asyncio import create_async_engine, async_sessionmaker, AsyncSession
-from src.core.config import settings
+# @Email   : pi.apple.lab@gmail.com
+import logging
 
-# 创建异步引擎
-engine = create_async_engine(settings.DATABASE_URL, echo=True)
+from sqlalchemy import create_engine
+from sqlalchemy.orm import sessionmaker
+from src.common.config import settings
 
-# 使用 async_sessionmaker 替代 sessionmaker
-AsyncSessionLocal = async_sessionmaker(
-    bind=engine,
-    class_=AsyncSession,
-    expire_on_commit=False
-)
+logger = logging.getLogger(__name__)
+# 同步引擎
+engine = create_engine(settings.DATABASE_URL, echo=True)
+
+# 同步 Session
+SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
 
-async def get_db() -> AsyncGenerator[AsyncSession, None]:
-    async with AsyncSessionLocal() as session:
-        yield session
+# 依赖注入
+def get_db():
+    db = SessionLocal()
+    try:
+        try:
+            yield db
+        except Exception as e:
+            logger.error(f"数据库操作出错: {str(e)}")
+            db.rollback()
+            raise
+    finally:
+        db.close()

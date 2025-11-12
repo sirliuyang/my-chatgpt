@@ -1,16 +1,20 @@
 # @Home    : www.pi-apple.com
 # @Author  : Leon
-# @Email   : 88978827@qq.com
+# @Email   : pi.apple.lab@gmail.com
 from pydantic import BaseModel
-from typing import List, Dict, Optional
+from typing import List, Optional, Literal
+
+
+class ChatMessage(BaseModel):
+    role: Literal["user", "assistant"]
+    content: str
 
 
 class ChatRequest(BaseModel):
-    conversation_id: Optional[int]  # Optional; auto-create if missing
+    conversation_id: Optional[int] = None
     message: str
-    history: List[Dict[str, str]]  # [{"role": "user/assistant", "content": "..."}]
+    history: List[ChatMessage] = []  # 可选历史（前端可传，可不传）
 
 
-class ChatResponse(BaseModel):
-    # Not used directly due to streaming
-    pass
+class ChatChunk(BaseModel):
+    content: str
