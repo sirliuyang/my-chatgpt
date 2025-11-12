@@ -1,4 +1,6 @@
-// components/LoadingIndicator.tsx
+// @Home    : www.pi-apple.com
+// @Author  : Leon
+// @Email   : newyoung9@gmail.com
 'use client';
 
 export default function LoadingIndicator() {
@@ -14,15 +16,15 @@ export default function LoadingIndicator() {
                     <div className="flex items-center gap-1 py-2">
                         <div
                             className="size-2 bg-gray-400 rounded-full animate-bounce"
-                            style={{ animationDelay: '0ms' }}
+                            style={{animationDelay: '0ms'}}
                         />
                         <div
                             className="size-2 bg-gray-400 rounded-full animate-bounce"
-                            style={{ animationDelay: '150ms' }}
+                            style={{animationDelay: '150ms'}}
                         />
                         <div
                             className="size-2 bg-gray-400 rounded-full animate-bounce"
-                            style={{ animationDelay: '300ms' }}
+                            style={{animationDelay: '300ms'}}
                         />
                     </div>
                 </div>

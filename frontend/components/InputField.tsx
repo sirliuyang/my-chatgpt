@@ -1,4 +1,6 @@
-// components/InputField.tsx
+// @Home    : www.pi-apple.com
+// @Author  : Leon
+// @Email   : newyoung9@gmail.com
 'use client';
 
 import {useState, useRef, useEffect, type KeyboardEvent, type ChangeEvent} from 'react';

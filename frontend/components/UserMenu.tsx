@@ -1,4 +1,6 @@
-// components/UserMenu.tsx
+// @Home    : www.pi-apple.com
+// @Author  : Leon
+// @Email   : newyoung9@gmail.com
 'use client';
 
 import {useState, useEffect, useRef} from 'react';

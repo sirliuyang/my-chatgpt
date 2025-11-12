@@ -1,4 +1,6 @@
-// components/ConversationList.tsx
+// @Home    : www.pi-apple.com
+// @Author  : Leon
+// @Email   : newyoung9@gmail.com
 'use client';
 
 import type {Conversation} from '@/lib/api';

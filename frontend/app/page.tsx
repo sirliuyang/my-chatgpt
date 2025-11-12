@@ -1,4 +1,6 @@
-// app/page.tsx
+// @Home    : www.pi-apple.com
+// @Author  : Leon
+// @Email   : newyoung9@gmail.com
 'use client';
 import React, {useState, useEffect, useCallback, useRef} from 'react';
 import Chat from '@/components/Chat';

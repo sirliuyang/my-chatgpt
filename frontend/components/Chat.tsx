@@ -1,4 +1,6 @@
-// components/Chat.tsx
+// @Home    : www.pi-apple.com
+// @Author  : Leon
+// @Email   : newyoung9@gmail.com
 'use client';
 
 import {useEffect, useRef, useState, type UIEvent} from 'react';

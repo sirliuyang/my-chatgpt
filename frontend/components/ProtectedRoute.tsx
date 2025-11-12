@@ -1,4 +1,6 @@
-// components/ProtectedRoute.tsx
+// @Home    : www.pi-apple.com
+// @Author  : Leon
+// @Email   : newyoung9@gmail.com
 'use client';
 
 import React, {useEffect, useState} from 'react';
